@@ -15,7 +15,7 @@ class DownloaderApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("YouTube Downloader Pro")
+        self.title("YouTube Downloader Pro by Daniel Alves")
         self.geometry("720x600")
 
         self.download_path = os.getcwd()
@@ -25,12 +25,12 @@ class DownloaderApp(ctk.CTk):
 
     def build_ui(self):
         self.url_entry = ctk.CTkEntry(
-            self, width=500, placeholder_text="Cole a URL do vídeo ou playlist"
+            self, width=500, placeholder_text="Cole a URL do vídeo ou da playlist"
         )
         self.url_entry.pack(pady=10)
 
         self.preview_button = ctk.CTkButton(
-            self, text="Carregar preview", command=self.load_preview
+            self, text="Carregar prévia", command=self.load_preview
         )
         self.preview_button.pack()
 
@@ -40,7 +40,7 @@ class DownloaderApp(ctk.CTk):
         self.title_label = ctk.CTkLabel(self, text="")
         self.title_label.pack()
 
-        self.resolution_menu = ctk.CTkComboBox(self, values=["auto"])
+        self.resolution_menu = ctk.CTkComboBox(self, values=["auto","720p","1080p"])
         self.resolution_menu.set("auto")
         self.resolution_menu.pack(pady=10)
 
@@ -69,7 +69,7 @@ class DownloaderApp(ctk.CTk):
             return
 
         self.preview_button.configure(state="disabled")
-        self._set_status("Carregando preview...")
+        self._set_status("Carregando prévia...")
 
         def worker():
             try:
@@ -163,7 +163,7 @@ class DownloaderApp(ctk.CTk):
 
             ydl_opts = {
                 "format": format_selector,
-                "merge_output_format": "mp4",
+                "merge_output_format": "mkv",
                 "outtmpl": outtmpl,
                 "progress_hooks": [self.progress_hook],
             }
